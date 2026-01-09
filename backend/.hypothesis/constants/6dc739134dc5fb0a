@@ -1,0 +1,4 @@
+# file: D:\Learning IT\AI-Driven-Development\GIAIC-Hackathon\Hackathon-2\Hackathon-2-Phase-III-TodoWebApp-Chatbot-MCP\backend\src\services\confirmation_flow.py
+# hypothesis_version: 6.148.8
+
+['PendingConfirmation', 'abort', 'action_type', 'all', 'cancel', 'clear all habits', 'clear completions', 'clear streak', 'clear_completions', 'confirm', 'context', 'created_at', 'delete all habits', 'delete completions', 'delete everything', 'delete habit', 'delete this habit', 'delete_all_habits', 'delete_habit', 'do it', 'do not', "don't", 'expires_at', 'go ahead', 'i confirm', 'never mind', 'nevermind', 'no', 'remove all habits', 'remove everything', 'remove habit', 'remove this habit', 'reset my streak', 'reset streak', 'reset_streak', 'start over', 'stop', 'yes', 'yes, delete', 'yes, proceed']

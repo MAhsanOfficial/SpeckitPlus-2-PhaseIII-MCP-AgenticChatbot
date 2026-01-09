@@ -1,0 +1,4 @@
+# file: D:\Learning IT\AI-Driven-Development\GIAIC-Hackathon\Hackathon-2\Hackathon-2-Phase-III-TodoWebApp-Chatbot-MCP\backend\src\core\auth.py
+# hypothesis_version: 6.148.8
+
+['/api/health', '/docs', '/openapi.json', '/redoc', 'Authorization', 'Bearer', 'Bearer ', 'HS256', 'JWT_SECRET', 'WWW-Authenticate', 'sub']

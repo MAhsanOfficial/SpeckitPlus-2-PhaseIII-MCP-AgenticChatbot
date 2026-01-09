@@ -1,0 +1,4 @@
+# file: D:\Learning IT\AI-Driven-Development\GIAIC-Hackathon\Hackathon-2\Hackathon-2-Phase-III-TodoWebApp-Chatbot-MCP\backend\src\api\chat\__init__.py
+# hypothesis_version: 6.148.8
+
+['ChatRequest', 'ChatResponse', 'router']

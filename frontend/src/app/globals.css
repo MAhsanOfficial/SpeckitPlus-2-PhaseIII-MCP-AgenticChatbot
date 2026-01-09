@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-cyan: #00F0FF;
+  --brand-blue: #00A6FA;
+  --brand-gold: #FFD700;
+  /* VIP Gold */
+  --brand-dark: #0A0A0B;
+  /* VIP Deep Black */
+  --brand-card: #121418;
+  /* VIP Card Surface */
+  --neon-glow: 0 0 20px rgba(0, 240, 255, 0.4);
+}
+
+body {
+  background-color: var(--brand-dark);
+  color: white;
+  min-height: 100vh;
+  cursor: crosshair;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+.bg-grid {
+  background-image: radial-gradient(circle at 2px 2px, rgba(0, 240, 255, 0.05) 1px, transparent 0);
+  background-size: 50px 50px;
+}
+
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 240, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+}
+
+.neon-btn {
+  background: linear-gradient(to right, #00F0FF, #00A6FA);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.neon-btn:hover {
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #00F0FF, #00A6FA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.vip-gradient-bg {
+  background: radial-gradient(circle at top right, rgba(0, 166, 250, 0.15), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(0, 240, 255, 0.05), transparent 40%);
+}
+
+.card-vip {
+  background: var(--brand-card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.card-vip:hover {
+  border-color: rgba(245, 158, 11, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--brand-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand-orange);
+  border-radius: 10px;
+}
+
+/* Cyberpunk Glitch Effect */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -1px 0 #00F0FF;
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: 1px 0 #FFD700;
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+  clip-path: inset(0 0 0 0);
+}
+
+@keyframes glitch-anim-1 {
+  0% {
+    clip-path: inset(20% 0 80% 0);
+  }
+
+  20% {
+    clip-path: inset(60% 0 10% 0);
+  }
+
+  40% {
+    clip-path: inset(40% 0 50% 0);
+  }
+
+  60% {
+    clip-path: inset(80% 0 5% 0);
+  }
+
+  80% {
+    clip-path: inset(10% 0 70% 0);
+  }
+
+  100% {
+    clip-path: inset(30% 0 20% 0);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip-path: inset(10% 0 60% 0);
+  }
+
+  20% {
+    clip-path: inset(30% 0 20% 0);
+  }
+
+  40% {
+    clip-path: inset(70% 0 10% 0);
+  }
+
+  60% {
+    clip-path: inset(20% 0 50% 0);
+  }
+
+  80% {
+    clip-path: inset(50% 0 30% 0);
+  }
+
+  100% {
+    clip-path: inset(0 0 80% 0);
+  }
+}

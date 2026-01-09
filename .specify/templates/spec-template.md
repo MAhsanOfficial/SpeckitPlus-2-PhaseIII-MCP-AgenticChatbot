@@ -100,6 +100,12 @@
 - **[Entity 1]**: [What it represents, key attributes without implementation]
 - **[Entity 2]**: [What it represents, relationships to other entities]
 
+## UI & Motion Requirements *(mandatory)*
+
+- **UI-001**: Component MUST use [Tailwind CSS] for styling.
+- **UI-002**: Transitions MUST use [Framer Motion] for [specify animation, e.g., entry/exit].
+- **UI-003**: System MUST provide [visual feedback] for [specific interaction].
+
 ## Success Criteria *(mandatory)*
 
 <!--

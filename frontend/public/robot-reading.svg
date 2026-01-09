@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#0a0a0f"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid2" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#0080ff" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+    <linearGradient id="robotGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0080ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0040ff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="400" height="300" fill="url(#grid2)"/>
+  
+  <!-- Robot reading book -->
+  <!-- Head -->
+  <rect x="170" y="70" width="60" height="50" rx="5" fill="url(#robotGrad2)" stroke="#0080ff" stroke-width="2" filter="url(#glow2)"/>
+  
+  <!-- Brain waves (thinking) -->
+  <path d="M 180 75 Q 185 70 190 75" stroke="#0080ff" stroke-width="2" fill="none" opacity="0.7">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+  </path>
+  <path d="M 195 75 Q 200 70 205 75" stroke="#0080ff" stroke-width="2" fill="none" opacity="0.7">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+  </path>
+  <path d="M 210 75 Q 215 70 220 75" stroke="#0080ff" stroke-width="2" fill="none" opacity="0.7">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="0.6s"/>
+  </path>
+  
+  <!-- Eyes (focused) -->
+  <rect x="180" y="90" width="15" height="8" rx="2" fill="#0080ff"/>
+  <rect x="205" y="90" width="15" height="8" rx="2" fill="#0080ff"/>
+  
+  <!-- Mouth (concentrated) -->
+  <line x1="190" y1="110" x2="210" y2="110" stroke="#0080ff" stroke-width="2"/>
+  
+  <!-- Antenna with data -->
+  <line x1="200" y1="70" x2="200" y2="50" stroke="#0080ff" stroke-width="2"/>
+  <circle cx="200" cy="45" r="5" fill="#0080ff" filter="url(#glow2)">
+    <animate attributeName="r" values="5;7;5" dur="1s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Data particles -->
+  <circle cx="195" cy="55" r="2" fill="#0080ff" opacity="0.8">
+    <animate attributeName="cy" values="55;35;55" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.8;0;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="205" cy="60" r="2" fill="#0080ff" opacity="0.8">
+    <animate attributeName="cy" values="60;40;60" dur="2.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.8;0;0.8" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Body -->
+  <rect x="160" y="125" width="80" height="70" rx="5" fill="url(#robotGrad2)" stroke="#0080ff" stroke-width="2" filter="url(#glow2)"/>
+  
+  <!-- Screen on chest (displaying data) -->
+  <rect x="175" y="145" width="50" height="35" rx="3" fill="#0a0a0f" stroke="#0080ff" stroke-width="2"/>
+  <line x1="180" y1="155" x2="220" y2="155" stroke="#0080ff" stroke-width="1" opacity="0.5"/>
+  <line x1="180" y1="160" x2="215" y2="160" stroke="#0080ff" stroke-width="1" opacity="0.5"/>
+  <line x1="180" y1="165" x2="210" y2="165" stroke="#0080ff" stroke-width="1" opacity="0.5"/>
+  <line x1="180" y1="170" x2="220" y2="170" stroke="#0080ff" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Arms holding book -->
+  <rect x="130" y="140" width="15" height="60" rx="3" fill="url(#robotGrad2)" stroke="#0080ff" stroke-width="2"/>
+  <rect x="255" y="140" width="15" height="60" rx="3" fill="url(#robotGrad2)" stroke="#0080ff" stroke-width="2"/>
+  
+  <!-- Hands -->
+  <circle cx="137" cy="205" r="8" fill="#0080ff" filter="url(#glow2)"/>
+  <circle cx="262" cy="205" r="8" fill="#0080ff" filter="url(#glow2)"/>
+  
+  <!-- Book -->
+  <rect x="150" y="195" width="100" height="70" rx="3" fill="#1a1a2e" stroke="#0080ff" stroke-width="2" filter="url(#glow2)"/>
+  <line x1="200" y1="195" x2="200" y2="265" stroke="#0080ff" stroke-width="2"/>
+  
+  <!-- Book pages/text -->
+  <line x1="160" y1="210" x2="190" y2="210" stroke="#0080ff" stroke-width="1" opacity="0.5"/>
+  <line x1="160" y1="220" x2="185" y2="220" stroke="#0080ff" stroke-width="1" opacity="0.5"/>
+  <line x1="160" y1="230" x2="190" y2="230" stroke="#0080ff" stroke-width="1" opacity="0.5"/>
+  <line x1="160" y1="240" x2="180" y2="240" stroke="#0080ff" stroke-width="1" opacity="0.5"/>
+  
+  <line x1="210" y1="210" x2="240" y2="210" stroke="#0080ff" stroke-width="1" opacity="0.5"/>
+  <line x1="210" y1="220" x2="235" y2="220" stroke="#0080ff" stroke-width="1" opacity="0.5"/>
+  <line x1="210" y1="230" x2="240" y2="230" stroke="#0080ff" stroke-width="1" opacity="0.5"/>
+  <line x1="210" y1="240" x2="230" y2="240" stroke="#0080ff" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Legs (sitting position) -->
+  <rect x="175" y="200" width="20" height="50" rx="3" fill="url(#robotGrad2)" stroke="#0080ff" stroke-width="2"/>
+  <rect x="205" y="200" width="20" height="50" rx="3" fill="url(#robotGrad2)" stroke="#0080ff" stroke-width="2"/>
+  
+  <!-- Feet -->
+  <ellipse cx="185" cy="255" rx="15" ry="8" fill="#0080ff" filter="url(#glow2)"/>
+  <ellipse cx="215" cy="255" rx="15" ry="8" fill="#0080ff" filter="url(#glow2)"/>
+  
+  <!-- Knowledge particles floating -->
+  <text x="120" y="120" font-family="monospace" font-size="10" fill="#0080ff" opacity="0.6">01</text>
+  <text x="280" y="130" font-family="monospace" font-size="10" fill="#0080ff" opacity="0.6">10</text>
+  <text x="110" y="180" font-family="monospace" font-size="10" fill="#0080ff" opacity="0.6">AI</text>
+  <text x="290" y="170" font-family="monospace" font-size="10" fill="#0080ff" opacity="0.6">ML</text>
+  
+  <!-- Text -->
+  <text x="200" y="285" font-family="monospace" font-size="12" fill="#0080ff" text-anchor="middle" opacity="0.7">DATA INGESTION</text>
+</svg>

@@ -1,0 +1,4 @@
+# file: D:\Learning IT\AI-Driven-Development\GIAIC-Hackathon\Hackathon-2\Hackathon-2-Phase-III-TodoWebApp-Chatbot-MCP\backend\src\api\chat\router.py
+# hypothesis_version: 6.148.8
+
+[401, 403, 404, 500, '/api/{user_id}/chat', '/conversations', 'Authorization', 'Bearer ', 'Cancel', 'Confirm', 'Create a new habit', 'Forbidden', 'GEMINI_API_KEY', 'Help', 'Internal error', 'Log a completion', 'Not found', 'Show my habits', 'Unauthorized', 'all', 'assistant', 'chatbot', 'content', 'conversations', 'count', 'created_at', 'description', 'id', 'last_activity_at', 'message', 'model', 'role', 'suggestions', 'title', 'tool_calls', 'tool_results', 'total', 'user']

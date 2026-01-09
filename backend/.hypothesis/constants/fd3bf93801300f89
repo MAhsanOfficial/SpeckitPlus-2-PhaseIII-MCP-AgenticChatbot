@@ -1,0 +1,4 @@
+# file: D:\Learning IT\AI-Driven-Development\GIAIC-Hackathon\Hackathon-2\Hackathon-2-Phase-III-TodoWebApp-Chatbot-MCP\backend\src\agents\chatbot.py
+# hypothesis_version: 6.148.8
+
+['Create a new habit', 'Create another habit', 'GEMINI_API_KEY', 'Get habit summary', 'Help', 'Log a completion', 'Show my habits', "What's my streak?", 'arguments', 'array', 'boolean', 'content', 'description', 'error', 'function_call', 'habit_create', 'habit_list', 'habit_log_completion', 'habit_streak', 'help', 'integer', 'jwt_token', 'model', 'name', 'number', 'object', 'properties', 'required', 'result', 'role', 'string', 'text', 'type', 'user']

@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+sqlmodel
+python-jose[cryptography]
+asyncpg
+python-dotenv
+pydantic-settings
+sqlalchemy[asyncio]
+google-generativeai
+httpx
+mcp
+fastmcp
+hypothesis
+pytest
+pytest-asyncio

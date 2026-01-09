@@ -1,0 +1,4 @@
+# file: D:\Learning IT\AI-Driven-Development\GIAIC-Hackathon\Hackathon-2\Hackathon-2-Phase-III-TodoWebApp-Chatbot-MCP\backend\src\mcp\tools\phase2_client.py
+# hypothesis_version: 6.148.8
+
+['/api/habits/', 'API_BASE_URL', 'Authorization', 'Content-Type', 'DELETE', 'GET', 'POST', 'PUT', 'application/json', 'date', 'description', 'name', 'note', 'status']
