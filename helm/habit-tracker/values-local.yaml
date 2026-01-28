@@ -1,0 +1,17 @@
+# Local Minikube-specific overrides
+# Use this file for local development deployment
+
+backend:
+  image:
+    pullPolicy: Never  # Use local images, don't pull from registry
+
+  replicas: 1
+
+frontend:
+  image:
+    pullPolicy: Never  # Use local images, don't pull from registry
+
+  replicas: 1
+
+  service:
+    nodePort: 30080  # Fixed NodePort for consistent local access

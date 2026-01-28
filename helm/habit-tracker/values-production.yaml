@@ -1,0 +1,217 @@
+# Production Environment Values
+# Template for future cloud deployment (AWS EKS, GCP GKE, Azure AKS)
+# Copy and customize for production use
+
+backend:
+  image:
+    repository: your-registry.io/habit-tracker-backend
+    tag: v1.0.0
+    pullPolicy: IfNotPresent
+
+  replicas: 3  # High availability with multiple replicas
+
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+
+  autoscaling:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 70
+    targetMemoryUtilizationPercentage: 80
+
+  livenessProbe:
+    httpGet:
+      path: /health
+      port: 8000
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 3
+
+  readinessProbe:
+    httpGet:
+      path: /health
+      port: 8000
+    initialDelaySeconds: 10
+    periodSeconds: 5
+    timeoutSeconds: 3
+    failureThreshold: 3
+
+frontend:
+  image:
+    repository: your-registry.io/habit-tracker-frontend
+    tag: v1.0.0
+    pullPolicy: IfNotPresent
+
+  replicas: 3  # High availability with multiple replicas
+
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+
+  autoscaling:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 70
+    targetMemoryUtilizationPercentage: 80
+
+  service:
+    type: LoadBalancer  # Cloud load balancer for production
+    port: 3000
+    annotations:
+      # AWS EKS example
+      service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+      # GCP GKE example
+      # cloud.google.com/load-balancer-type: "External"
+      # Azure AKS example
+      # service.beta.kubernetes.io/azure-load-balancer-internal: "false"
+
+  livenessProbe:
+    httpGet:
+      path: /
+      port: 3000
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 3
+
+  readinessProbe:
+    httpGet:
+      path: /
+      port: 3000
+    initialDelaySeconds: 10
+    periodSeconds: 5
+    timeoutSeconds: 3
+    failureThreshold: 3
+
+config:
+  backendUrl: "http://habit-tracker-backend:8000"  # Internal service DNS
+
+# Production-specific configurations
+ingress:
+  enabled: true
+  className: nginx  # or "alb" for AWS, "gce" for GCP
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  hosts:
+    - host: app.yourdomain.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: habit-tracker-tls
+      hosts:
+        - app.yourdomain.com
+
+# Security configurations
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+  seccompProfile:
+    type: RuntimeDefault
+
+podSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+
+# Monitoring and observability
+monitoring:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+    interval: 30s
+
+  prometheusRule:
+    enabled: true
+    rules:
+      - alert: HighErrorRate
+        expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High error rate detected"
+
+# Persistence (if needed for future features)
+persistence:
+  enabled: false
+  storageClass: "standard"
+  size: 10Gi
+
+# Network policies
+networkPolicy:
+  enabled: true
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: habit-tracker
+  egress:
+    - to:
+      - podSelector:
+          matchLabels:
+            app: habit-tracker
+    - to:  # Allow external database access
+      - namespaceSelector: {}
+      ports:
+        - protocol: TCP
+          port: 5432
+
+# Pod disruption budget
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1
+
+# Affinity and anti-affinity
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values:
+                  - habit-tracker
+          topologyKey: kubernetes.io/hostname
+
+# Node selection
+nodeSelector: {}
+tolerations: []
+
+# Service account
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+# NOTES:
+# 1. Update image repositories to your container registry
+# 2. Configure ingress with your domain name
+# 3. Set up TLS certificates (cert-manager recommended)
+# 4. Configure monitoring (Prometheus/Grafana)
+# 5. Set up external secrets management (Sealed Secrets, External Secrets Operator)
+# 6. Configure backup and disaster recovery
+# 7. Set up CI/CD pipeline for automated deployments
+# 8. Configure logging aggregation (ELK, Loki)
+# 9. Set up alerting (PagerDuty, Slack)
+# 10. Review and adjust resource limits based on actual usage

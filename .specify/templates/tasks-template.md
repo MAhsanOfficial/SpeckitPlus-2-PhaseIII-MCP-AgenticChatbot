@@ -52,6 +52,15 @@ description: "Task list template for feature implementation"
 - [ ] T002 Initialize [language] project with [framework] dependencies
 - [ ] T003 [P] Configure linting and formatting tools
 
+### Phase 1 (Infrastructure): Setup for Phase IV
+
+**Purpose**: Infrastructure project initialization (if Phase IV feature)
+
+- [ ] T001 Create infrastructure directory structure (k8s/, helm/, docker/)
+- [ ] T002 [P] Create .env.example with all required secrets documented
+- [ ] T003 [P] Initialize Helm chart structure with Chart.yaml
+- [ ] T004 Verify Minikube installation and Docker Desktop Kubernetes enabled
+
 ---
 
 ## Phase 2: Foundational (Blocking Prerequisites)
@@ -68,6 +77,22 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] T007 Create base models/entities that all stories depend on
 - [ ] T008 Configure error handling and logging infrastructure
 - [ ] T009 Setup environment configuration management
+
+### Phase 2 (Infrastructure): Foundational for Phase IV
+
+**Purpose**: Core containerization and Kubernetes setup (if Phase IV feature)
+
+**⚠️ CRITICAL**: All Phase IV tasks depend on these foundational infrastructure tasks
+
+- [ ] T005 [P] [INFRA] Use kubectl-ai or Claude Code to generate backend Dockerfile
+- [ ] T006 [P] [INFRA] Use kubectl-ai or Claude Code to generate frontend Dockerfile
+- [ ] T007 [INFRA] Build and test Docker images locally (docker build, docker run)
+- [ ] T008 [P] [INFRA] Create Kubernetes Deployment manifest for backend (via kubectl-ai)
+- [ ] T009 [P] [INFRA] Create Kubernetes Deployment manifest for frontend (via kubectl-ai)
+- [ ] T010 [P] [INFRA] Create Kubernetes Service manifests (via kubectl-ai)
+- [ ] T011 [P] [INFRA] Create ConfigMap for non-sensitive configuration
+- [ ] T012 [P] [INFRA] Create Secret manifest template (no real secrets)
+- [ ] T013 [INFRA] Validate all manifests with kubectl apply --dry-run=client
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -156,6 +181,19 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
 - [ ] TXXX Security hardening
 - [ ] TXXX Run quickstart.md validation
+
+### Phase N (Infrastructure): Polish for Phase IV
+
+**Purpose**: Infrastructure documentation and optimization (if Phase IV feature)
+
+- [ ] TXXX [P] [INFRA] Create DEPLOYMENT.md with step-by-step Minikube instructions
+- [ ] TXXX [P] [INFRA] Document all required environment variables in README.md
+- [ ] TXXX [P] [INFRA] Add resource limits and requests to all Deployments
+- [ ] TXXX [P] [INFRA] Add liveness and readiness probes to all Deployments
+- [ ] TXXX [INFRA] Test full deployment on clean Minikube cluster
+- [ ] TXXX [INFRA] Verify rollback procedure (helm rollback)
+- [ ] TXXX [P] [INFRA] Optimize Docker image sizes (multi-stage builds)
+- [ ] TXXX [INFRA] Document troubleshooting steps (kubectl logs, describe, events)
 
 ---
 

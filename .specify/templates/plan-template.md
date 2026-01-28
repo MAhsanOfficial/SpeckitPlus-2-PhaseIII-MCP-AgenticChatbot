@@ -33,6 +33,22 @@
 
 [Gates determined based on constitution file]
 
+### Phase IV Infrastructure Gates (if applicable)
+
+If this is a Phase IV infrastructure feature, verify:
+
+- [ ] **Phase III Code Immutability (XI)**: Plan does NOT modify any Phase II/III application code
+- [ ] **Infrastructure-Only Scope (XII)**: Plan ONLY includes Docker, Kubernetes, Helm artifacts
+- [ ] **Reproducible Deployment (XIII)**: All versions pinned, no `latest` tags, declarative manifests
+- [ ] **Minikube Compatibility (XIV)**: Resources sized for local dev, no cloud-specific services
+- [ ] **AI-Assisted DevOps (XV)**: Plan uses kubectl-ai, kagent, or Claude Code for generation
+- [ ] **Container Statelessness (XVI)**: No persistent data in container filesystems
+- [ ] **Configuration Externalized (XVII)**: All config via ConfigMaps/Secrets, no hardcoded values
+- [ ] **Secrets Management (XVIII)**: No secrets in version control, documented in .env.example
+- [ ] **AI-First YAML (XIX)**: Manual YAML justified with explanation of AI tool failure
+
+**REJECT** any Phase IV plan that modifies `backend/src/` or `frontend/src/` application code.
+
 ## Project Structure
 
 ### Documentation (this feature)

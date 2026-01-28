@@ -1,22 +1,30 @@
 <!--
 Sync Impact Report:
-- Version change: 3.0.0 → 3.1.0
+- Version change: 3.1.0 → 4.0.0
 - List of modified principles:
-  - (All Phase II principles retained unchanged)
+  - (All Phase II and Phase III principles retained unchanged)
 - Added sections:
-  - VI. Phase II Sacred Codebase (NEW - immutability mandate)
-  - VII. Additive Phase III Architecture (NEW - extension rules)
-  - VIII. Stateless AI Interaction (NEW - statelessness for AI layer)
-  - IX. MCP-First Tool Interface (NEW - MCP as sole action interface)
-  - X. Security & User Isolation (Enhanced - expanded for chatbot context)
+  - XI. Phase III Code Immutability (NEW - reinforces Phase II/III protection)
+  - XII. Infrastructure-Only Phase IV (NEW - deployment scope boundary)
+  - XIII. Reproducible Deployment (NEW - deterministic infrastructure)
+  - XIV. Local Kubernetes Environment (NEW - Minikube mandate)
+  - XV. AI-Assisted DevOps Mandate (NEW - AI-first tooling)
+  - XVI. Container Statelessness (NEW - 12-factor app principle)
+  - XVII. Configuration Management (NEW - environment variable discipline)
+  - XVIII. Secrets Management (NEW - security for credentials)
+  - XIX. AI-First YAML Generation (NEW - minimize manual configuration)
+  - Technology Stack (Phase IV) section added
 - Removed sections: none
 - Templates requiring updates:
   - ✅ updated: .specify/memory/constitution.md
-  - ⚠ pending: .specify/templates/plan-template.md (Constitution Check section already compatible)
-- Follow-up TODOs: none
+  - ⚠ pending: .specify/templates/plan-template.md (Constitution Check section needs Phase IV gates)
+  - ⚠ pending: .specify/templates/tasks-template.md (needs infrastructure task categories)
+- Follow-up TODOs:
+  - Update plan-template.md to include Phase IV infrastructure gates
+  - Update tasks-template.md to include containerization and Kubernetes task patterns
 -->
 
-# Habit Tracker & Goal Management Web App Constitution (Phase II + III)
+# Habit Tracker & Goal Management Web App Constitution (Phase II + III + IV)
 
 ## Core Principles
 
@@ -69,11 +77,127 @@ AI agents MUST NEVER interact with the database directly:
 - **Conversation Storage**: Database-persisted sessions and messages
 - **Tool Interface**: MCP tools exclusively
 
+### XI. Phase III Code Immutability
+Phase III application code (frontend and backend) is IMMUTABLE during Phase IV. Phase IV is INFRASTRUCTURE ONLY. No application logic, API endpoints, database schemas, or UI components may be modified. Phase IV work is strictly limited to:
+- Containerization (Dockerfiles, Docker Compose)
+- Kubernetes manifests (Deployments, Services, ConfigMaps, Secrets)
+- Helm charts for deployment automation
+- CI/CD pipeline configuration
+- Infrastructure-as-Code artifacts
+
+**Rationale**: Separating infrastructure from application code prevents regression risk and enables independent infrastructure evolution.
+
+### XII. Infrastructure-Only Phase IV
+Phase IV deliverables MUST be purely infrastructure artifacts. The following are PROHIBITED in Phase IV:
+- Modifying Python source code in `backend/src/`
+- Modifying TypeScript/React code in `frontend/src/`
+- Changing database schemas or migrations
+- Altering API contracts or endpoints
+- Modifying business logic or UI components
+
+Phase IV MUST ONLY produce:
+- Docker images (via Dockerfiles)
+- Kubernetes YAML manifests
+- Helm charts and values files
+- Environment variable configuration templates
+- Deployment automation scripts
+- Infrastructure documentation
+
+**Rationale**: Clear phase boundaries prevent scope creep and ensure infrastructure changes don't introduce application bugs.
+
+### XIII. Reproducible Deployment
+All infrastructure MUST be deterministic and reproducible. Deployments MUST produce identical results across environments and time. This requires:
+- Pinned dependency versions in Dockerfiles
+- Immutable container image tags (no `latest` in production)
+- Declarative Kubernetes manifests (no imperative `kubectl` commands)
+- Version-controlled Helm charts
+- Documented deployment procedures in `README.md` or `DEPLOYMENT.md`
+
+**Rationale**: Reproducibility enables reliable rollbacks, consistent testing, and predictable production behavior.
+
+### XIV. Local Kubernetes Environment (Minikube)
+The PRIMARY execution environment for Phase IV is local Kubernetes via Minikube. All infrastructure MUST be designed and tested for Minikube compatibility. This includes:
+- Resource limits appropriate for local development (CPU, memory)
+- LoadBalancer services MUST use `minikube tunnel` or NodePort
+- Persistent volumes MUST use Minikube's default storage class
+- No cloud-specific resources (AWS ALB, GCP Cloud SQL, etc.)
+- Docker Desktop with Kubernetes enabled is an acceptable alternative
+
+**Rationale**: Local Kubernetes ensures developers can test full deployment without cloud costs or complexity.
+
+### XV. AI-Assisted DevOps Mandate
+Phase IV MUST leverage AI-assisted DevOps tools wherever possible. Manual YAML authoring is DISCOURAGED unless AI tools fail or are unavailable. Mandatory AI tools:
+- **Docker AI Agent (Gordon)**: For Dockerfile generation and optimization (when available)
+- **kubectl-ai**: For Kubernetes manifest generation and troubleshooting
+- **kagent**: For Kubernetes cluster operations and debugging
+- **Claude Code**: For Helm chart generation and infrastructure planning
+
+**Rationale**: AI tools reduce human error, accelerate development, and encode best practices automatically.
+
+### XVI. Container Statelessness
+All application containers MUST be stateless. Containers MUST NOT store persistent data on local filesystems. This requires:
+- Database connections via external PostgreSQL (Neon or local)
+- No file uploads stored in container filesystem
+- Session state in database or external cache (Redis)
+- Logs streamed to stdout/stderr (not files)
+- Configuration via environment variables (not config files)
+
+**Rationale**: Stateless containers enable horizontal scaling, rolling updates, and fault tolerance.
+
+### XVII. Configuration Management
+All configuration MUST be externalized via environment variables. Configuration files (`.env`, `config.yaml`) are PROHIBITED in container images. This requires:
+- Kubernetes ConfigMaps for non-sensitive configuration
+- Kubernetes Secrets for sensitive data (API keys, database passwords)
+- Helm values files for environment-specific overrides
+- No hardcoded URLs, ports, or credentials in source code
+
+**Rationale**: Externalized configuration enables environment portability and follows 12-factor app principles.
+
+### XVIII. Secrets Management
+Secrets MUST NEVER be hardcoded or committed to version control. Secrets management MUST follow these rules:
+- Use Kubernetes Secrets for sensitive data
+- Reference secrets via environment variables in Deployments
+- Use `.env.example` files with placeholder values (never real secrets)
+- Document required secrets in `README.md` or `DEPLOYMENT.md`
+- Use `kubectl create secret` or Helm secret management
+- Consider external secret managers (Sealed Secrets, External Secrets Operator) for production
+
+**Rationale**: Proper secrets management prevents credential leaks and security breaches.
+
+### XIX. AI-First YAML Generation
+Manual YAML authoring is a LAST RESORT. The workflow MUST be:
+1. **First**: Attempt generation with AI tools (kubectl-ai, kagent, Claude Code)
+2. **Second**: Use Helm charts with AI-generated templates
+3. **Third**: Copy and adapt from official Kubernetes examples
+4. **Last Resort**: Write YAML manually only if all above fail
+
+When manual YAML is unavoidable, it MUST:
+- Include comments explaining why AI generation failed
+- Follow Kubernetes best practices (resource limits, health checks, labels)
+- Be validated with `kubectl apply --dry-run=client`
+- Be documented in the implementation plan
+
+**Rationale**: AI tools encode best practices and reduce configuration errors.
+
 ## Technology Stack (Mandatory)
 
+### Phase II & III Stack (Immutable)
 - **Frontend**: Next.js 16+ (App Router), TypeScript, Tailwind CSS, Framer Motion, Better Auth
 - **Backend**: Python FastAPI, SQLModel ORM, JWT Verification Middleware
 - **Database**: Neon Serverless PostgreSQL
+- **AI**: Gemini 2.5 Flash, OpenAI Agents SDK, MCP Tools
+
+### Phase IV Infrastructure Stack (New)
+- **Container Runtime**: Docker Desktop (with Kubernetes enabled)
+- **Orchestration**: Minikube (local Kubernetes cluster)
+- **Package Manager**: Helm 3+
+- **AI DevOps Tools**:
+  - Docker AI Agent (Gordon) - Dockerfile generation
+  - kubectl-ai - Kubernetes manifest generation
+  - kagent - Cluster operations and debugging
+  - Claude Code - Infrastructure planning and Helm charts
+- **Image Registry**: Docker Hub or local registry
+- **Deployment Target**: Minikube with LoadBalancer support (via `minikube tunnel`)
 
 ## Governance
 
@@ -81,11 +205,14 @@ AI agents MUST NEVER interact with the database directly:
 This constitution is the supreme governing document. Amendments require an explicit proposal and user approval.
 
 ### Versioning Policy
-- **MAJOR**: Backward incompatible governance or principal requirement changes.
-- **MINOR**: New principles or material technology stack updates.
+- **MAJOR**: Backward incompatible governance or principal requirement changes, or new phase introduction.
+- **MINOR**: New principles or material technology stack updates within existing phases.
 - **PATCH**: Wording improvements or non-semantic refinements.
 
 ### Compliance Review
 Every implementation plan and task must be reviewed against these principles. Violations are not permitted without an approved amendment.
 
-**Version**: 3.1.0 | **Ratified**: 2025-12-30 | **Last Amended**: 2026-01-02
+### Phase IV Enforcement
+Phase IV work MUST be validated against principles XI-XIX before approval. Any task that modifies Phase III application code MUST be rejected. Any infrastructure task that bypasses AI tools without justification MUST be rejected.
+
+**Version**: 4.0.0 | **Ratified**: 2025-12-30 | **Last Amended**: 2026-01-27

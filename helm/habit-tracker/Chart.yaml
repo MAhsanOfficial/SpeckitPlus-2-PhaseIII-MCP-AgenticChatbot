@@ -1,0 +1,14 @@
+apiVersion: v2
+name: habit-tracker
+version: 1.0.0
+appVersion: "1.0.0"
+description: Habit Tracker with AI Chatbot - Local Kubernetes Deployment
+type: application
+keywords:
+  - habit-tracker
+  - kubernetes
+  - minikube
+  - fastapi
+  - nextjs
+maintainers:
+  - name: Development Team

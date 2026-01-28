@@ -36,3 +36,17 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+.env
+
+# Kubernetes & Infrastructure
+k8s/overlays/local/
+*.secret.yaml
+secrets/
+.kube/
+kubeconfig*
+*.key
+*.crt
+*.pem
+
+# Note: values-local.yaml is committed (contains only config, not secrets)
+# Actual secrets go in Kubernetes Secret resources, not values files

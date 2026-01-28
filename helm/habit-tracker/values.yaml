@@ -1,0 +1,50 @@
+# Default values for habit-tracker Helm chart
+# This is a YAML-formatted file.
+
+backend:
+  image:
+    repository: habit-tracker-backend
+    tag: v1.0.0
+    pullPolicy: IfNotPresent
+
+  replicas: 1
+
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+  service:
+    type: ClusterIP
+    port: 8000
+
+frontend:
+  image:
+    repository: habit-tracker-frontend
+    tag: v1.0.0
+    pullPolicy: IfNotPresent
+
+  replicas: 1
+
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+  service:
+    type: NodePort
+    port: 3000
+    nodePort: 30080
+
+config:
+  backendUrl: "http://habit-tracker-backend:8000"
+
+secrets:
+  # Name of existing Kubernetes Secret (must be created manually)
+  existingSecret: habit-tracker-secrets
